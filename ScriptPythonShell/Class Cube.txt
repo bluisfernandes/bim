@@ -10,4 +10,3 @@ class Cube(object):
 		
 	def setEdge(self,edge):
 		self.edge=edge
-as
