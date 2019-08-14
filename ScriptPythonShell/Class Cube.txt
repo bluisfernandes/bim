@@ -1,0 +1,13 @@
+class Cube(object):
+	def __init__(self,edge=1):
+		self.edge=edge
+		
+	def getArea(self):
+ 		return self.edge**2
+ 		
+	def getVolume(self):
+		return self.edge**3
+		
+	def setEdge(self,edge):
+		self.edge=edge
+as

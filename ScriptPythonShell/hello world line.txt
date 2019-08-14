@@ -1,0 +1,50 @@
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+def pickobject():
+   from Autodesk.Revit.UI.Selection import ObjectType
+   __window__.Hide()
+   picked = uidoc.Selection.PickObject(ObjectType.Element)
+   __window__.Show()
+   __window__.Topmost = True
+   return picked
+
+
+pt1=Point.ByCoordinates(0,0)
+pt2=Point.ByCoordinates(10,10)
+line=Vector.ByTwoPoints(pt1,pt2)
+comp = line.Length
+print(comp)
+#objeto = pickobject()
+#print type(objeto)
+
+
+def get_selected_elements():
+    """Return Selected Elements as a list[]. Returns empty list if no elements are selected.
+    Usage:
+    - Select 1 or more elements
+    > selected_elements = get_selected_elements()
+    > []
+    """
+    selection = uidoc.Selection
+    selection_ids = selection.GetElementIds()
+    elements = []
+    for element_id in selection_ids:
+        elements.append(doc.GetElement(element_id))
+    return elements
+
+
+def varTeste(a,b):
+	soma=a+b
+	return soma
+	
+a=varTeste(3,20)
+print(a)
+
+b=get_selected_elements()
+print type(b)    
+
+	
+
+

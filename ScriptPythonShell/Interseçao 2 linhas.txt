@@ -1,0 +1,27 @@
+#Get Line Intersection
+#Get's intersection of 2 lines
+
+#Author: Gui Talarico | github.com/gtalarico
+
+import clr
+from Autodesk.Revit.DB import Line, XYZ
+from Autodesk.Revit.DB import SetComparisonResult, IntersectionResultArray
+
+def get_intersection(line1, line2):
+	results = clr.Reference[IntersectionResultArray]()
+    # See ironpython.net/documentation/dotnet for clr.Reference
+
+	result = line1.Intersect(line2, results)
+    # http://www.revitapidocs.com/2018/51961478-fb36-e00b-2d1b-7db27b0a09e6.htm
+
+	if result != SetComparisonResult.Overlap:
+		print('No Intesection')
+
+	intersection = results.Item[0]
+	return intersection.XYZPoint
+
+
+line1 = Line.CreateBound(XYZ(0,0,0), XYZ(10,0,1))
+line2 = Line.CreateBound(XYZ(5,-5,0), XYZ(5,5,0))
+point = get_intersection(line1, line2)
+print(point)
